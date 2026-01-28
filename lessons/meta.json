@@ -1,0 +1,42 @@
+{
+  "sections": [
+    {
+      "slug": "01-introduction",
+      "title": "Introduction",
+      "lessons": [
+        {
+          "slug": "01-welcome",
+          "title": "Welcome"
+        },
+        {
+          "slug": "02-getting-started",
+          "title": "Getting Started"
+        }
+      ]
+    },
+    {
+      "slug": "02-fundamentals",
+      "title": "Fundamentals",
+      "lessons": [
+        {
+          "slug": "01-core-concepts",
+          "title": "Core Concepts"
+        },
+        {
+          "slug": "02-advanced-patterns",
+          "title": "Advanced Patterns"
+        }
+      ]
+    },
+    {
+      "slug": "03-conclusion",
+      "title": "Conclusion",
+      "lessons": [
+        {
+          "slug": "01-wrap-up",
+          "title": "Wrap Up"
+        }
+      ]
+    }
+  ]
+}
