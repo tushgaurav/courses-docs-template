@@ -3,13 +3,10 @@ import { getTableOfContents } from "@/lib/lessons";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { TableOfContents } from "@/components/table-of-contents";
-import { ArrowRight } from "lucide-react";
-import Link from "next/link";
+import { FileText } from "lucide-react";
 
 export default function HomePage() {
   const toc = getTableOfContents();
-  const firstLesson = toc.sections[0]?.lessons[0];
-  const firstSection = toc.sections[0];
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -21,11 +18,8 @@ export default function HomePage() {
           <div className="relative mx-auto max-w-4xl px-6 py-24 sm:py-32">
             <div className="flex flex-col gap-6">
               <div className="inline-flex w-fit items-center gap-2 rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-                </span>
-                Live Course Notes
+                <FileText className="h-3 w-3" />
+                Notes
               </div>
               <h1 className="text-balance text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
                 {siteConfig.title}
@@ -36,31 +30,20 @@ export default function HomePage() {
               <p className="max-w-xl text-pretty leading-relaxed text-muted-foreground">
                 {siteConfig.description}
               </p>
-              <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-                {firstLesson && firstSection && (
-                  <Link
-                    href={`/lessons/${firstSection.slug}/${firstLesson.slug}`}
-                    className="group inline-flex items-center justify-center gap-2 rounded-lg bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-all hover:bg-foreground/90"
-                  >
-                    Start Learning
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                  </Link>
-                )}
-                <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                  <div className="flex items-center gap-1.5">
-                    <div className="h-1 w-1 rounded-full bg-muted-foreground/50" />
-                    <span>{toc.sections.length} sections</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <div className="h-1 w-1 rounded-full bg-muted-foreground/50" />
-                    <span>
-                      {toc.sections.reduce(
-                        (acc, s) => acc + s.lessons.length,
-                        0
-                      )}{" "}
-                      lessons
-                    </span>
-                  </div>
+              <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                <div className="flex items-center gap-1.5">
+                  <div className="h-1 w-1 rounded-full bg-muted-foreground/50" />
+                  <span>{toc.sections.length} sections</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <div className="h-1 w-1 rounded-full bg-muted-foreground/50" />
+                  <span>
+                    {toc.sections.reduce(
+                      (acc, s) => acc + s.lessons.length,
+                      0
+                    )}{" "}
+                    topics
+                  </span>
                 </div>
               </div>
               <div className="mt-2 flex items-center gap-3">
@@ -96,10 +79,10 @@ export default function HomePage() {
           <div className="mb-10 flex items-end justify-between">
             <div>
               <h2 className="text-2xl font-semibold tracking-tight text-foreground">
-                Course Content
+                Table of Contents
               </h2>
               <p className="mt-1 text-sm text-muted-foreground">
-                Everything you need to follow along
+                Reference material for the session
               </p>
             </div>
           </div>
