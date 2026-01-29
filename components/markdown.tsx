@@ -30,6 +30,12 @@ function parseMarkdown(markdown: string): string {
   // Italic
   html = html.replace(/\*([^*]+)\*/g, "<em>$1</em>");
 
+  // Images
+  html = html.replace(
+    /!\[([^\]]*)\]\(([^)]+)\)/g,
+    '<img src="$2" alt="$1" class="rounded-lg border my-4 w-full max-w-3xl h-auto" />'
+  );
+
   // Links
   html = html.replace(
     /\[([^\]]+)\]\(([^)]+)\)/g,

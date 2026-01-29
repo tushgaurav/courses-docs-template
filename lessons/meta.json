@@ -15,21 +15,57 @@
       ]
     },
     {
-      "slug": "02-fundamentals",
-      "title": "Fundamentals",
+      "slug": "02-history",
+      "title": "History",
       "lessons": [
         {
-          "slug": "01-core-concepts",
-          "title": "Core Concepts"
-        },
-        {
-          "slug": "02-advanced-patterns",
-          "title": "Advanced Patterns"
+          "slug": "01-history",
+          "title": "History"
         }
       ]
     },
     {
-      "slug": "03-conclusion",
+      "slug": "03-chroot",
+      "title": "Chroot",
+      "lessons": [
+        {
+          "slug": "01-chroot",
+          "title": "CHROOT"
+        }
+      ]
+    },
+    {
+      "slug": "04-namespaces",
+      "title": "Namespaces",
+      "lessons": [
+        {
+          "slug": "01-namespaces",
+          "title": "Namespaces"
+        }
+      ]
+    },
+    {
+      "slug": "05-cgroups",
+      "title": "cgroups",
+      "lessons": [
+        {
+          "slug": "01-cgroups",
+          "title": "cgroups"
+        }
+      ]
+    },
+    {
+      "slug": "06-docker",
+      "title": "Docker",
+      "lessons": [
+        {
+          "slug": "01-docker",
+          "title": "Docker"
+        }
+      ]
+    },
+    {
+      "slug": "07-conclusion",
       "title": "Conclusion",
       "lessons": [
         {
