@@ -11,7 +11,6 @@ export const siteConfig = {
     linkedin: "btholt",
     github: "btholt",
     twitter: "holtbt",
-    bluesky: "brianholt.me",
   },
 };
 
