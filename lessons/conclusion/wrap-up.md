@@ -9,5 +9,3 @@ We have covered:
 - How `chroot` provides file system isolation.
 - How namespaces provide process isolation.
 - How cgroups provide resource limitation.
-
-(Mock data as requested)
