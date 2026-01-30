@@ -14,7 +14,6 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   keywords: siteConfig.keywords,
   authors: [{ name: siteConfig.author.name }],
-  generator: "v0.app",
   icons: {
     icon: [
       {
@@ -26,8 +25,8 @@ export const metadata: Metadata = {
         media: "(prefers-color-scheme: dark)",
       },
       {
-        url: "/icon.svg",
-        type: "image/svg+xml",
+        url: "/icon.png",
+        type: "image/png",
       },
     ],
     apple: "/apple-icon.png",

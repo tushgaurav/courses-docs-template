@@ -1,75 +1,65 @@
 {
   "sections": [
     {
-      "slug": "01-introduction",
+      "slug": "introduction",
       "title": "Introduction",
       "lessons": [
         {
-          "slug": "01-welcome",
+          "slug": "welcome",
           "title": "Welcome"
         },
         {
-          "slug": "02-getting-started",
-          "title": "Getting Started"
+          "slug": "setup",
+          "title": "Setup & Requirements"
         }
       ]
     },
     {
-      "slug": "02-history",
+      "slug": "history",
       "title": "History",
       "lessons": [
         {
-          "slug": "01-history",
+          "slug": "history",
           "title": "History"
         }
       ]
     },
     {
-      "slug": "03-chroot",
+      "slug": "chroot",
       "title": "Chroot",
       "lessons": [
         {
-          "slug": "01-chroot",
-          "title": "CHROOT"
+          "slug": "chroot",
+          "title": "chroot"
         }
       ]
     },
     {
-      "slug": "04-namespaces",
+      "slug": "namespaces",
       "title": "Namespaces",
       "lessons": [
         {
-          "slug": "01-namespaces",
+          "slug": "namespaces",
           "title": "Namespaces"
         }
       ]
     },
     {
-      "slug": "05-cgroups",
+      "slug": "cgroups",
       "title": "cgroups",
       "lessons": [
         {
-          "slug": "01-cgroups",
+          "slug": "cgroups",
           "title": "cgroups"
         }
       ]
     },
     {
-      "slug": "06-docker",
-      "title": "Docker",
-      "lessons": [
-        {
-          "slug": "01-docker",
-          "title": "Docker"
-        }
-      ]
-    },
-    {
-      "slug": "07-conclusion",
+      "slug": "conclusion",
       "title": "Conclusion",
       "lessons": [
         {
-          "slug": "01-wrap-up",
+          "slug": "wrap-up",
           "title": "Wrap Up"
         }
       ]

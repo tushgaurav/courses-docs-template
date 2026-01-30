@@ -3,7 +3,6 @@ import { getTableOfContents } from "@/lib/lessons";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { TableOfContents } from "@/components/table-of-contents";
-import { FileText } from "lucide-react";
 
 export default function HomePage() {
   const toc = getTableOfContents();

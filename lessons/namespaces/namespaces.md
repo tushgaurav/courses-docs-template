@@ -19,12 +19,12 @@ Now, let’s create a chroot’d environment that’s also isolated using namesp
 `unshare` creates a new isolated namespace from its parent.
 
 ```bash
-## Install debootstrap
+ # Install debootstrap
 apt-get update -y
 apt-get install debootstrap -y
 debootstrap --variant=minbase jammy /better-root
 
-# head into the new namespace'd, chroot'd environment
+ # head into the new namespace'd, chroot'd environment
 unshare --mount --uts --ipc --net --pid --fork --user --map-root-user chroot /better-root bash # this also chroot's for us
 mount -t proc none /proc # process namespace
 mount -t sysfs none /sys # filesystem

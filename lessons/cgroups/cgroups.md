@@ -29,42 +29,42 @@ cgroups, as we have said, allow you to move processes and their children into gr
 You interact with cgroups by a pseudo-file system. Honestly, the whole interface feels weird to me but that is what it is! Inside your #2 terminal (the non-unshared one) run `cd /sys/fs/cgroup` and then run `ls`. You'll see a bunch of "files" that look like `cpu.max`, `cgroup.procs`, and `memory.high`. Each one of these represents a setting that you can play with with regard to the cgroup. In this case, we are looking at the root cgroup: all cgroups will be children of this root cgroup. The way you make your own cgroup is by creating a folder inside of the cgroup.
 
 ```bash
-# creates the cgroup
+ # creates the cgroup
 mkdir /sys/fs/cgroup/sandbox
 
-# look at all the files created automatically
+ # look at all the files created automatically
 ls /sys/fs/cgroup/sandbox
 ```
 
 We now have a sandbox cgroup, which is a child of the root cgroup and can put limits on it!
 
 ```bash
-# Find your isolated bash PID, it's the bash one immediately after the unshare
+ # Find your isolated bash PID, it's the bash one immediately after the unshare
 ps aux
 
-# should see the process in the root cgroup
+ # should see the process in the root cgroup
 cat /sys/fs/cgroup/cgroup.procs
 
-# puts the unshared env into the cgroup called sandbox
+ # puts the unshared env into the cgroup called sandbox
 echo <PID> > /sys/fs/cgroup/sandbox/cgroup.procs
 
-# should see the process in the sandbox cgroup
+ # should see the process in the sandbox cgroup
 cat /sys/fs/cgroup/sandbox/cgroup.procs
 
-# should see the process no longer in the root cgroup - processes belong to exactly 1 cgroup
+ # should see the process no longer in the root cgroup - processes belong to exactly 1 cgroup
 cat /sys/fs/cgroup/cgroup.proc
 ```
 
 We now have moved our unshared bash process into a cgroup. We haven't placed any limits on it yet but it's there, ready to be managed.
 
 ```bash
-# should see all the available controllers
+ # should see all the available controllers
 cat /sys/fs/cgroup/cgroup.controllers
 
-# there's no controllers
+ # there's no controllers
 cat /sys/fs/cgroup/sandbox/cgroup.controllers
 
-# there's no controllers enabled its children
+ # there's no controllers enabled its children
 cat /sys/fs/cgroup/cgroup.subtree_control
 ```
 
@@ -73,28 +73,28 @@ You have to enable controllers for the children and none of them are enabled at 
 Easy, right? We just add them to subtree_control, right? Yes, but one problem: you can't add new subtree_control configs while the cgroup itself has processes in it. So we're going to create another cgroup, add the rest of the processes to that one, and then enable the subtree_control configs for the root cgroup.
 
 ```bash
-# make new cgroup for the rest of the processes, you can't modify cgroups that have processes and by default Docker doesn't include any subtree_controllers
+ # make new cgroup for the rest of the processes, you can't modify cgroups that have processes and by default Docker doesn't include any subtree_controllers
 mkdir /sys/fs/cgroup/other-procs
 
-# see all the processes you need to move, rerun each time after you add as it may move multiple processes at once due to some being parent / child
+ # see all the processes you need to move, rerun each time after you add as it may move multiple processes at once due to some being parent / child
 cat /sys/fs/cgroup/cgroup.procs
 
-# you have to do this one at a time for each process
+ # you have to do this one at a time for each process
 echo <PID> > /sys/fs/cgroup/other-procs/cgroup.procs
 
-# verify all the processes have been moved
+ # verify all the processes have been moved
 cat /sys/fs/cgroup/cgroup.procs
 
-# add the controllers
+ # add the controllers
 echo "+cpuset +cpu +io +memory +hugetlb +pids +rdma" > /sys/fs/cgroup/cgroup.subtree_control
 
-# notice how few files there are
+ # notice how few files there are
 ls /sys/fs/cgroup/sandbox
 
-# all the controllers now available
+ # all the controllers now available
 cat /sys/fs/cgroup/sandbox/cgroup.controllers
 
-# notice how many more files there are now
+ # notice how many more files there are now
 ls /sys/fs/cgroup/sandbox
 ```
 
@@ -105,25 +105,25 @@ Let’s now open a third terminal. We will use this to monitor resource usage us
 Run `docker exec -it docker-host bash`
 
 ```bash
-# a cool visual representation of CPU and RAM being used
+ # a cool visual representation of CPU and RAM being used
 apt-get install htop
 
-# from #3 so we can watch what's happening
+ # from #3 so we can watch what's happening
 htop
 
-# run this from #1 terminal and watch it in htop to see it consume about a gig of RAM and 100% of CPU core
+ # run this from #1 terminal and watch it in htop to see it consume about a gig of RAM and 100% of CPU core
 yes | tr \\n x | head -c 1048576000 | grep n
 
-# from #2, (you can get the PID from htop) to stop the CPU from being pegged and memory from being consumed
+ # from #2, (you can get the PID from htop) to stop the CPU from being pegged and memory from being consumed
 kill -9 <PID of yes>
 
-# should see max, so the memory is unlimited
+ # should see max, so the memory is unlimited
 cat /sys/fs/cgroup/sandbox/memory.max
 
-# set the limit to 80MB of RAM (the number is 80MB in bytes)
+ # set the limit to 80MB of RAM (the number is 80MB in bytes)
 echo 83886080 > /sys/fs/cgroup/sandbox/memory.max
 
-# from inside #1, see it limit the RAM taken up; because the RAM is limited, the CPU usage is limited
+ # from inside #1, see it limit the RAM taken up; because the RAM is limited, the CPU usage is limited
 yes | tr \\n x | head -c 1048576000 | grep n
 ```
 

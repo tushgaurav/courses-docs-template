@@ -13,14 +13,14 @@ export function Footer() {
             </Link>
             <p className="text-center text-sm text-muted-foreground sm:text-left">
               Created by{" "}
-              <a
-                href={`https://github.com/${siteConfig.social.github}`}
+              <Link
+                href={siteConfig.social.site}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-medium text-foreground transition-colors hover:text-muted-foreground"
               >
                 {siteConfig.author.name}
-              </a>
+              </Link>
               {siteConfig.author.company && (
                 <span className="text-muted-foreground">
                   {" "}
@@ -31,7 +31,7 @@ export function Footer() {
           </div>
           <div className="flex items-center gap-1">
             {siteConfig.social.github && (
-              <a
+              <Link
                 href={`https://github.com/${siteConfig.social.github}`}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -39,29 +39,29 @@ export function Footer() {
                 aria-label="GitHub"
               >
                 <Github className="h-4 w-4" />
-              </a>
+              </Link>
             )}
-            {siteConfig.social.twitter && (
-              <a
-                href={`https://twitter.com/${siteConfig.social.twitter}`}
+            {siteConfig.social.linkedin && (
+              <Link
+                href={`https://linkedin.com/in/${siteConfig.social.linkedin}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                 aria-label="Twitter"
               >
-                <Twitter className="h-4 w-4" />
-              </a>
+                <Linkedin className="h-4 w-4" />
+              </Link>
             )}
-            {siteConfig.social.linkedin && (
-              <a
-                href={`https://linkedin.com/in/${siteConfig.social.linkedin}`}
+            {siteConfig.social.twitter && (
+              <Link
+                href={`https://twitter.com/${siteConfig.social.twitter}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                 aria-label="LinkedIn"
               >
-                <Linkedin className="h-4 w-4" />
-              </a>
+                <Twitter className="h-4 w-4" />
+              </Link>
             )}
           </div>
         </div>
