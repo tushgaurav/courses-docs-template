@@ -1,4 +1,4 @@
-# CHROOT
+# chroot
 
 chroot stands for “change root”.
 
@@ -23,7 +23,7 @@ Let’s try it.
 We will be doing this in a Ubuntu machine. However you can do this in any linux distribution of your choice (yes arch works). For me, as I am running macOS, I will be doing this in a docker container (ahh, yes the irony). I will be running a docker container:
 
 ```bash
-docker run -it --name ubuntu-host --rum --previleged ubuntu:jammy
+docker run -it --name ubuntu-host --run --previleged ubuntu:jammy
 ```
 
 This will download the official Ubuntu container from Docker Hub and grab the version which is tagged with “jammy” tag.
